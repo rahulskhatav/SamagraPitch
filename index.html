@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Redirection, not new money — Maharashtra deep tech in education</title>
+<script>document.documentElement.className = 'js';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141c2b;
+  --ink:#ffeedb;
+  --gold:#f2c14a;
+  --gold-soft:#f7d777;
+  --gold-deep:#d9a01f;
+  --green:#34a853;
+  --green-dim:#2b8c47;
+  --green-txt:#c9f2d3;
+  --green-soft:#86e79b;
+  --red:#e0342c;
+  --red-soft:#ff8a7a;
+  --violet:#7c5cff;
+  --violet-soft:#c3aaff;
+  --violet-chip:#b899ff;
+  --blue:#3b86e8;
+  --blue-soft:#8cc4ff;
+  --pink:#e8579e;
+  --panel:#1e2a3f;
+  --hair:rgba(255,238,219,.13);
+  --body:rgba(255,238,219,.72);
+  --cap:rgba(255,238,219,.62);
+  --meta:rgba(255,238,219,.42);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:Inter,system-ui,sans-serif;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft);text-decoration:none}
+a:hover{color:var(--gold-deep)}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px;border-radius:3px}
+::selection{background:rgba(217,160,31,.32)}
+::-webkit-scrollbar{width:0;height:0}
+
+/* No overflow on this wrapper: any overflow value here makes it a scroll
+   container and position:sticky stops pinning to the viewport. Below
+   1180px the page scrolls sideways, as intended. */
+.page{min-width:1180px;background:var(--bg)}
+
+/* ── scene shell ─────────────────────────────────────────────── */
+.scene{position:relative;height:200vh}
+.scene--tall{height:240vh}
+/* Scenes overlap by 30vh (= 130vh − 100vh): the next scene is already
+   pinned and fading in while this one flies out, so no blank scroll sits
+   between them. Later sections paint above earlier ones by DOM order. */
+.scene + .scene{margin-top:-130vh}
+.scene-inner{
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 6vw 0 9vw;overflow:hidden;
+  will-change:transform,opacity;
+}
+.scene--tall .scene-inner{padding:0 5vw 0 9vw}
+.glow{position:absolute;inset:0;pointer-events:none}
+
+/* ── type ────────────────────────────────────────────────────── */
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.025em}
+.h1{font-size:clamp(64px,7.4vw,118px);line-height:.92;letter-spacing:-.035em;max-width:17ch}
+.h2{font-size:clamp(38px,3.7vw,56px);line-height:1.06;max-width:26ch}
+.h2--xl{font-size:clamp(48px,4.8vw,74px);line-height:1;letter-spacing:-.035em;max-width:22ch}
+.h2--gate{font-size:clamp(40px,3.9vw,58px);line-height:1.04;letter-spacing:-.03em;max-width:28ch}
+.h2--own{font-size:clamp(52px,5.2vw,80px);line-height:1;letter-spacing:-.035em;max-width:20ch}
+.h2--ask{font-size:clamp(64px,6.6vw,108px);line-height:.94;letter-spacing:-.04em;max-width:18ch}
+.gold{color:var(--gold)}
+.lead{font-size:26px;font-weight:300;line-height:1.45;max-width:46ch;color:var(--body);margin:0}
+.body{font-size:19px;font-weight:300;line-height:1.6;max-width:56ch;color:rgba(255,238,219,.66);margin:0}
+.cap{font-size:14px;line-height:1.45;color:var(--cap)}
+.meta{font-size:15px;color:var(--meta);margin:0}
+
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.eyebrow .rule{width:56px;height:1px;flex:none;background:linear-gradient(90deg,rgba(247,215,119,0),currentColor)}
+.eyebrow .label{font-size:13px;letter-spacing:.24em;text-transform:uppercase}
+.eyebrow--gold{color:var(--gold-soft)}
+.eyebrow--green{color:var(--green-soft)}
+.eyebrow--blue{color:var(--blue-soft)}
+.eyebrow--violet{color:var(--violet-soft)}
+.eyebrow--red{color:var(--red-soft)}
+
+.badge{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  padding:6px 11px;border-radius:4px;white-space:nowrap;
+}
+.badge--violet{background:var(--violet-chip);color:#1a1035}
+.badge--blue{background:var(--blue-soft);color:#08213d}
+
+/* ── scene 01 ────────────────────────────────────────────────── */
+#s01 .glow{background:
+  radial-gradient(760px 620px at 88% 26%,rgba(217,160,31,.26),transparent 68%),
+  radial-gradient(680px 540px at 8% 86%,rgba(124,92,255,.16),transparent 70%)}
+#s01 .eyebrow{margin-bottom:42px}
+#s01 .lead{margin-top:40px}
+.scroll-cue{
+  display:flex;align-items:center;gap:12px;margin-top:72px;
+  color:var(--meta);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+}
+.scroll-cue .rule{width:40px;height:1px;background:linear-gradient(90deg,rgba(255,238,219,.4),rgba(255,238,219,0))}
+
+/* ── chain component (scenes 02 + 07) ────────────────────────── */
+.chain{display:flex;align-items:center;flex-wrap:nowrap;max-width:1240px}
+.chain__node{display:flex;flex-direction:column;align-items:center;gap:12px;flex:none}
+.chain__dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--green);background:rgba(52,168,83,.28)}
+.chain__label{font-size:15px;letter-spacing:.03em;color:var(--green-txt);white-space:nowrap}
+.chain__node--broken .chain__dot{
+  width:22px;height:22px;border-color:var(--red-soft);background:var(--red);
+  box-shadow:0 0 0 8px rgba(224,52,44,.2);
+}
+.chain__node--broken .chain__label{color:var(--red-soft);font-weight:500}
+.chain__link{height:3px;flex:1;min-width:26px;background:var(--green-dim)}
+.chain__link--to-break{background:linear-gradient(90deg,var(--green-dim),var(--red))}
+.chain__link--from-break{background:linear-gradient(90deg,var(--red),var(--green-dim))}
+.chain__link--severed{min-width:34px;background:repeating-linear-gradient(90deg,#e0342c 0 5px,transparent 5px 13px)}
+/* healed state — same component, every link now carries current */
+.chain--healed .chain__node--broken .chain__dot{
+  border-color:var(--green-soft);background:var(--green);
+  box-shadow:0 0 0 8px rgba(52,168,83,.22);
+}
+.chain--healed .chain__node--broken .chain__label{color:#e4ffe9}
+.chain--healed .chain__link,
+.chain--healed .chain__link--to-break,
+.chain--healed .chain__link--from-break{background:var(--green-dim)}
+.chain--healed .chain__link--severed{background:var(--green)}
+
+.chain-bracket{max-width:1240px;margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.chain-bracket__rule{width:100%;height:12px;border:1px solid rgba(134,231,155,.4);border-top:0;border-radius:0 0 6px 6px}
+.chain-bracket__label{font-size:15px;letter-spacing:.02em;color:var(--green-txt);text-align:center}
+.chain-bracket__label strong{color:var(--gold);font-weight:500}
+
+#s02 .glow{background:
+  radial-gradient(700px 560px at 52% 52%,rgba(224,52,44,.22),transparent 66%),
+  radial-gradient(620px 500px at 4% 22%,rgba(52,168,83,.14),transparent 70%)}
+#s02 .h2{margin-bottom:62px}
+#s02 .body{margin-top:58px}
+
+/* ── scene 03 ────────────────────────────────────────────────── */
+#s03 .glow{background:
+  radial-gradient(820px 640px at 84% 74%,rgba(217,160,31,.22),transparent 66%),
+  radial-gradient(640px 520px at 6% 12%,rgba(59,134,232,.16),transparent 70%)}
+.asset-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:1px;max-width:1300px;
+  background:var(--hair);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
+}
+.asset{background:var(--panel);display:flex;flex-direction:column}
+.asset__bar{height:3px;display:block}
+.asset__body{padding:26px 22px;display:flex;flex-direction:column;gap:9px}
+.asset__stat{font-size:38px;font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink)}
+.asset--gold{background:rgba(217,160,31,.16)}
+.asset--gold .asset__stat{color:var(--gold-soft)}
+.asset--gold .cap{color:rgba(255,238,219,.82)}
+#s03 .h2--xl{margin-top:64px}
+#s03 .meta{margin-top:24px}
+
+/* ── scene 04 ────────────────────────────────────────────────── */
+#s04 .glow{background:
+  radial-gradient(780px 600px at 14% 24%,rgba(224,52,44,.2),transparent 66%),
+  radial-gradient(700px 560px at 92% 88%,rgba(124,92,255,.14),transparent 70%)}
+.gap-head{display:flex;align-items:baseline;justify-content:space-between;gap:28px;margin-bottom:24px;max-width:1360px}
+.gap-head .eyebrow{margin-bottom:0}
+.gap-sub{font-size:13px;letter-spacing:.05em;line-height:1.5;color:rgba(255,238,219,.44);text-align:right;max-width:62ch}
+.gap-table{
+  display:flex;flex-direction:column;gap:1px;max-width:1360px;
+  background:rgba(255,238,219,.11);border:1px solid var(--hair);border-radius:8px;overflow:hidden;
+}
+.gap-row{display:grid;grid-template-columns:60px 1.05fr 1.35fr 140px;gap:22px;align-items:center;background:var(--panel);padding:19px 24px}
+.gap-row--header{
+  padding:13px 24px;background:rgba(255,238,219,.05);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,238,219,.48);
+}
+.gap-id{font-size:18px;font-weight:500;color:rgba(255,238,219,.56)}
+.gap-name{font-size:15.5px;line-height:1.35;color:rgba(255,238,219,.8)}
+.gap-why{font-size:13.5px;line-height:1.5;color:rgba(255,238,219,.48)}
+.gap-score{display:flex;align-items:center;gap:12px;justify-content:flex-end;text-align:right}
+.gap-meter{width:58px;height:5px;border-radius:3px;background:rgba(255,238,219,.16);overflow:hidden;display:block;flex:none}
+.gap-meter i{display:block;height:5px;background:rgba(242,193,74,.5)}
+.gap-num{font-size:17px;color:rgba(255,238,219,.66);min-width:40px;text-align:right}
+.gap-row--dim{opacity:.68}
+.gap-row--top{
+  padding:22px 24px;
+  background:linear-gradient(90deg,rgba(224,52,44,.2),rgba(224,52,44,.08));
+  box-shadow:inset 3px 0 0 var(--red);
+}
+.gap-row--top .gap-id{font-size:21px;color:var(--red-soft)}
+.gap-row--top .gap-name{font-size:17px;color:var(--ink);font-weight:500}
+.gap-row--top .gap-why{font-size:14.5px;color:rgba(255,238,219,.74)}
+.gap-row--top .gap-meter i{background:var(--red-soft)}
+.gap-row--top .gap-num{font-size:19px;font-weight:500;color:var(--red-soft)}
+.callout{
+  margin-top:32px;max-width:98ch;padding:22px 26px;border-radius:8px;
+  border:1px solid var(--hair);border-left:3px solid var(--red);
+  background:linear-gradient(100deg,rgba(224,52,44,.16),rgba(255,238,219,.03));
+}
+.callout h3{font-size:23px;line-height:1.2;color:var(--red-soft);margin-bottom:8px}
+.callout p{margin:0;font-size:19px;font-weight:300;line-height:1.5;color:var(--body);max-width:88ch}
+
+/* ── scenes 05 / 06 — pillars ────────────────────────────────── */
+#s05 .glow{background:
+  radial-gradient(860px 660px at 82% 20%,rgba(124,92,255,.28),transparent 66%),
+  radial-gradient(640px 520px at 6% 92%,rgba(232,87,158,.14),transparent 70%)}
+#s06 .glow{background:
+  radial-gradient(860px 660px at 84% 76%,rgba(59,134,232,.28),transparent 66%),
+  radial-gradient(640px 520px at 4% 14%,rgba(52,168,83,.15),transparent 70%)}
+.gate-head{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.gate-head .label{font-size:13px;letter-spacing:.24em;text-transform:uppercase}
+.gate-head--violet .label{color:var(--violet-soft)}
+.gate-head--blue .label{color:var(--blue-soft)}
+.gate-lead{font-size:19px;font-weight:300;line-height:1.55;color:rgba(255,238,219,.66);margin:12px 0 44px;max-width:64ch}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1360px}
+.pillar{
+  display:flex;flex-direction:column;border-radius:8px;
+  border:1px solid rgba(255,238,219,.15);
+  transition:background .2s ease,border-color .2s ease;
+}
+.pillar__head{padding:24px 24px 20px;display:flex;flex-direction:column;gap:11px}
+.pillar__kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,238,219,.44)}
+.pillar h3{font-size:23px;line-height:1.2;color:var(--ink);letter-spacing:-.01em}
+.pillar__sum{font-size:15px;line-height:1.5;color:rgba(255,238,219,.66);margin:0}
+.pillar__toggle{
+  margin:4px 0 0;padding:0;background:none;border:0;cursor:pointer;
+  font:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+}
+.pillar__toggle .chev{display:inline-block;transition:transform .24s ease}
+.pillar.is-open .pillar__toggle .chev{transform:rotate(180deg)}
+.pillar__detail{
+  padding:18px 24px 24px;display:flex;flex-direction:column;gap:14px;
+  border-top:1px solid rgba(255,238,219,.1);max-height:40vh;overflow-y:auto;
+}
+.js .pillar .pillar__detail{
+  max-height:0;opacity:0;overflow:hidden;padding-top:0;padding-bottom:0;border-top-color:transparent;
+  transition:max-height .24s ease,opacity .24s ease,padding .24s ease;
+}
+.js .pillar.is-open .pillar__detail{
+  max-height:40vh;opacity:1;overflow-y:auto;padding-top:18px;padding-bottom:24px;
+  border-top-color:rgba(255,238,219,.1);
+}
+.detail{display:flex;flex-direction:column;gap:4px}
+.detail__term{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.detail__text{font-size:14px;line-height:1.55;color:rgba(255,238,219,.74)}
+.detail--nested{margin-left:16px;padding-left:14px;border-left:1px solid rgba(255,238,219,.14)}
+
+.pillar--violet{
+  border-top:3px solid var(--violet);
+  background:linear-gradient(180deg,rgba(124,92,255,.13),rgba(255,238,219,.03));
+}
+.pillar--violet:hover{
+  background:linear-gradient(180deg,rgba(124,92,255,.24),rgba(255,238,219,.05));
+  border-color:rgba(184,153,255,.5);border-top-color:var(--violet);
+}
+.pillar--violet .pillar__toggle,
+.pillar--violet .detail__term{color:var(--violet-soft)}
+.pillar--blue{
+  border-top:3px solid var(--blue);
+  background:linear-gradient(180deg,rgba(59,134,232,.14),rgba(255,238,219,.03));
+}
+.pillar--blue:hover{
+  background:linear-gradient(180deg,rgba(59,134,232,.26),rgba(255,238,219,.05));
+  border-color:rgba(140,196,255,.5);border-top-color:var(--blue);
+}
+.pillar--blue .pillar__toggle,
+.pillar--blue .detail__term{color:var(--blue-soft)}
+
+/* ── scene 07 ────────────────────────────────────────────────── */
+#s07 .glow{background:
+  radial-gradient(820px 640px at 86% 34%,rgba(52,168,83,.24),transparent 66%),
+  radial-gradient(620px 520px at 8% 90%,rgba(59,134,232,.14),transparent 70%)}
+#s07 .own-body{font-size:23px;font-weight:300;line-height:1.5;color:rgba(255,238,219,.7);margin:32px 0 0;max-width:56ch}
+#s07 .own-body strong{color:var(--gold);font-weight:500}
+#s07 .chain{margin-top:48px}
+#s07 .meta{margin-top:22px}
+
+/* ── scene 08 ────────────────────────────────────────────────── */
+#s08 .glow{background:
+  radial-gradient(900px 700px at 88% 30%,rgba(217,160,31,.3),transparent 66%),
+  radial-gradient(660px 540px at 4% 88%,rgba(52,168,83,.14),transparent 70%)}
+.moves{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:22px;margin-top:48px}
+.move{
+  border:1px solid var(--hair);border-left:3px solid var(--gold);border-radius:8px;
+  padding:24px;display:flex;flex-direction:column;gap:9px;
+  background:linear-gradient(100deg,rgba(217,160,31,.16),rgba(255,238,219,.03));
+}
+.move__kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,238,219,.44)}
+.move__title{font-size:21px;line-height:1.3;color:var(--ink);font-weight:500}
+.move__note{font-size:15px;line-height:1.5;color:rgba(255,238,219,.64)}
+.stat-strip{display:flex;gap:52px;margin-top:48px;align-items:baseline}
+.stat{display:flex;flex-direction:column;gap:5px}
+.stat__num{font-size:42px;font-weight:500;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.stat__num--gold{color:var(--gold-soft)}
+.stat__num--green{color:var(--green-soft)}
+.stat__cap{font-size:14px;color:rgba(255,238,219,.58)}
+.closer{font-size:38px;font-weight:300;line-height:1.3;letter-spacing:-.02em;color:var(--gold);margin:48px 0 0;max-width:34ch}
+
+/* ── reduced motion: the zoom mechanic is presentation only ──── */
+@media (prefers-reduced-motion: reduce){
+  /* no cross-fade to hide the overlap behind, so scenes stand apart again */
+  .scene + .scene{margin-top:0}
+  .scene-inner{transform:none !important;opacity:1 !important;filter:none !important;pointer-events:auto !important}
+  .pillar__detail,.pillar__toggle .chev{transition:none !important}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ 01 · Apex ══ -->
+  <section class="scene" id="s01" data-scene data-screen-label="01 Apex">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <p class="eyebrow eyebrow--gold"><span class="rule"></span><span class="label">Maharashtra · deep tech in education</span></p>
+      <h1 class="h1">Redirection,<br><span class="gold">not new money.</span></h1>
+      <p class="lead">A regulated sandbox for testing. A signal channel for feedback. Procurement that pays only for proof.</p>
+      <p class="scroll-cue"><span>Scroll</span><span class="rule"></span></p>
+    </div>
+  </section>
+
+  <!-- ══ 02 · The broken chain ══ -->
+  <section class="scene" id="s02" data-scene data-screen-label="02 Broken chain">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <p class="eyebrow eyebrow--green"><span class="rule"></span><span class="label">Six stages of deep tech development</span></p>
+      <h2 class="h2">The chain holds at both ends. It snaps in the middle.</h2>
+      <div class="chain">
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Conceived</span></div>
+        <span class="chain__link"></span>
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Researched</span></div>
+        <span class="chain__link chain__link--to-break"></span>
+        <div class="chain__node chain__node--broken"><span class="chain__dot"></span><span class="chain__label">Tested</span></div>
+        <span class="chain__link chain__link--severed"></span>
+        <div class="chain__node chain__node--broken"><span class="chain__dot"></span><span class="chain__label">Funded</span></div>
+        <span class="chain__link chain__link--from-break"></span>
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Adopted</span></div>
+        <span class="chain__link"></span>
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Scaled</span></div>
+      </div>
+      <p class="body">An idea can be conceived and researched here, and it can scale here — but nothing crosses from a working prototype to a funded, procured product. Two links carry the whole failure.</p>
+    </div>
+  </section>
+
+  <!-- ══ 03 · What the state already owns ══ -->
+  <section class="scene" id="s03" data-scene data-screen-label="03 Assets">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <p class="eyebrow eyebrow--blue"><span class="rule"></span><span class="label">What the state already owns</span></p>
+      <div class="asset-grid">
+        <div class="asset">
+          <span class="asset__bar" style="background:#3b86e8"></span>
+          <span class="asset__body"><span class="asset__stat">1.45 cr</span><span class="cap">school students · 87 universities · 5,579 colleges</span></span>
+        </div>
+        <div class="asset">
+          <span class="asset__bar" style="background:#7c5cff"></span>
+          <span class="asset__body"><span class="asset__stat">7.5 lakh</span><span class="cap">teachers already inside AI Saathi training</span></span>
+        </div>
+        <div class="asset">
+          <span class="asset__bar" style="background:#e8579e"></span>
+          <span class="asset__body"><span class="asset__stat">₹10,000 cr</span><span class="cap">AI Policy 2026 · 2,000 GPUs · 6 Centres of Excellence</span></span>
+        </div>
+        <div class="asset">
+          <span class="asset__bar" style="background:#34a853"></span>
+          <span class="asset__body"><span class="asset__stat">ATL</span><span class="cap">Atal Tinkering Lab network — a physical testbed in place</span></span>
+        </div>
+        <div class="asset asset--gold">
+          <span class="asset__bar" style="background:#f2c14a"></span>
+          <span class="asset__body"><span class="asset__stat">₹524 cr</span><span class="cap">a year · recurring · cabinet-approved · currently unclaimed (PRS 2026-27)</span></span>
+        </div>
+      </div>
+      <h2 class="h2 h2--xl">The gap is <span class="gold">wiring</span>, not money.</h2>
+    </div>
+  </section>
+
+  <!-- ══ 04 · Five systemic gaps, scored ══ -->
+  <section class="scene scene--tall" id="s04" data-scene data-screen-label="04 Systemic gaps">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <div class="gap-head">
+        <p class="eyebrow eyebrow--red"><span class="rule"></span><span class="label">Five systemic gaps, scored</span></p>
+        <p class="gap-sub">Impact (blocking power · lifecycle coverage · reach) × feasibility (legal · fiscal · institutional readiness · time to proof)</p>
+      </div>
+      <div class="gap-table">
+        <div class="gap-row gap-row--header"><span>#</span><span>Gap</span><span>Why it matters</span><span style="text-align:right">Score</span></div>
+
+        <div class="gap-row gap-row--top">
+          <span class="gap-id">S1</span>
+          <span class="gap-name">No lawful route to process minors' learning data</span>
+          <span class="gap-why">Adaptive learning is behavioural monitoring under DPDP. Every AI pilot is non-compliant until the state builds a pathway. Gates all others.</span>
+          <span class="gap-score"><span class="gap-meter"><i style="width:100%"></i></span><span class="gap-num">21.3</span></span>
+        </div>
+
+        <div class="gap-row gap-row--top">
+          <span class="gap-id">S2</span>
+          <span class="gap-name">The state runs blind — no signal in, nothing measured, nothing verifiable</span>
+          <span class="gap-why">No teacher feedback loop, no evaluation on testbeds, no credential portability. Nothing can be validated, so nothing can be procured on evidence.</span>
+          <span class="gap-score"><span class="gap-meter"><i style="width:98%"></i></span><span class="gap-num">21.0</span></span>
+        </div>
+
+        <div class="gap-row gap-row--dim">
+          <span class="gap-id">S5</span>
+          <span class="gap-name">Four departments own one stage each; nobody owns the pipeline</span>
+          <span class="gap-why">The reason the other four stay open. A failure spanning two departments is visible to somebody, actionable by nobody.</span>
+          <span class="gap-score"><span class="gap-meter"><i style="width:76%"></i></span><span class="gap-num">16.3</span></span>
+        </div>
+
+        <div class="gap-row gap-row--dim">
+          <span class="gap-id">S3</span>
+          <span class="gap-name">Research is neither pointed at education nor spread beyond a few institutions</span>
+          <span class="gap-why">No education vertical in any funding instrument; ~2.5% of colleges run PhDs. Slows what gets built; blocks nothing in flight.</span>
+          <span class="gap-score"><span class="gap-meter"><i style="width:51%"></i></span><span class="gap-num">10.8</span></span>
+        </div>
+
+        <div class="gap-row gap-row--dim">
+          <span class="gap-id">S4</span>
+          <span class="gap-name">Nothing crosses from a working idea to a paying customer</span>
+          <span class="gap-why">No demand channel to buyers, no IP/licensing framework, no capital bridging validation. The narrowest reach of the five.</span>
+          <span class="gap-score"><span class="gap-meter"><i style="width:47%"></i></span><span class="gap-num">10.0</span></span>
+        </div>
+      </div>
+      <div class="callout">
+        <h3>S1 and S2 fail together.</h3>
+        <p>They are the permission and the machinery. Permission without machinery is exactly what South Korea had; machinery without permission is illegal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 05 · Gate 1 · MERS ══ -->
+  <section class="scene scene--tall" id="s05" data-scene data-screen-label="05 Gate 1 MERS">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <p class="gate-head gate-head--violet"><span class="badge badge--violet">Resolves S1</span><span class="label">Gate 1 · the legal gate</span></p>
+      <h2 class="h2 h2--gate">Maharashtra EdTech Regulatory Sandbox</h2>
+      <p class="gate-lead">A lawful pathway to process minors' learning data — co-managed by SCERT, the School Education Department and MSInS.</p>
+
+      <div class="pillars">
+        <div class="pillar pillar--violet" data-pillar="p1">
+          <div class="pillar__head">
+            <span class="pillar__kicker">Pillar 01</span>
+            <h3>Selection Mechanism</h3>
+            <p class="pillar__sum">A 3-phase lifecycle that keeps fly-by-night operators out of school access.</p>
+            <button class="pillar__toggle" type="button" aria-expanded="false" aria-controls="d1">Three phases <span class="chev" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="pillar__detail" id="d1">
+            <div class="detail"><span class="detail__term">Phase 1 · admission &amp; design review</span><span class="detail__text">DPIIT-registered, an educational MVP (XR, blockchain or adaptive systems), a DPDPA threat assessment, and SCERT pedagogical review against state curriculum standards.</span></div>
+            <div class="detail"><span class="detail__term">Phase 2 · beta piloting</span><span class="detail__text">Access to a designated cluster of Certified Pilot Schools, observed by SCERT officers under limited-month administrative safe harbours.</span></div>
+            <div class="detail"><span class="detail__term">Phase 3 · graduation &amp; scaling</span><span class="detail__text">Third-party audit of data-erasure compliance, technical security and learning-outcome efficacy before exit.</span></div>
+          </div>
+        </div>
+
+        <div class="pillar pillar--violet" data-pillar="p2">
+          <div class="pillar__head">
+            <span class="pillar__kicker">Pillar 02</span>
+            <h3>Operational Requirements</h3>
+            <p class="pillar__sum">What a startup must run continuously while inside the sandbox.</p>
+            <button class="pillar__toggle" type="button" aria-expanded="false" aria-controls="d2">Three duties <span class="chev" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="pillar__detail" id="d2">
+            <div class="detail"><span class="detail__term">Comprehensive data mapping</span><span class="detail__text">Every field collected, its purpose, its retention and its route out of the system, declared up front.</span></div>
+            <div class="detail"><span class="detail__term">Continuous threat modelling</span><span class="detail__text">Maintained against live telemetry logs, not filed once as an admission document.</span></div>
+            <div class="detail"><span class="detail__term">Non-adaptive static fallback</span><span class="detail__text">Every deep-tech platform keeps a fully functional non-adaptive version of its software available.</span></div>
+          </div>
+        </div>
+
+        <div class="pillar pillar--violet" data-pillar="p3">
+          <div class="pillar__head">
+            <span class="pillar__kicker">Pillar 03</span>
+            <h3>Technical Governance</h3>
+            <p class="pillar__sum">Consent that is provable, and telemetry that carries no identity.</p>
+            <button class="pillar__toggle" type="button" aria-expanded="false" aria-controls="d3">Two ledgers <span class="chev" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="pillar__detail" id="d3">
+            <div class="detail"><span class="detail__term">Immutable cryptographic consent</span><span class="detail__text">A private, permissioned state ledger. Every grant, change or withdrawal made through Aaple Sarkar is cryptographically logged.</span></div>
+            <div class="detail detail--nested"><span class="detail__term">Granular opt-in · s.6(3)</span><span class="detail__text">Per-activity toggles in Marathi and English.</span></div>
+            <div class="detail detail--nested"><span class="detail__term">Mitigating s.6(5)</span><span class="detail__text">Withdraw consent and the student reverts to the standard digital version — no loss of basic pedagogical access.</span></div>
+            <div class="detail"><span class="detail__term">Pseudonymized telemetry ledger</span><span class="detail__text">VR gaze tracking, haptic latency and adaptive progression are stripped of identity, hashed, and processed as pseudonymized transactions.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 06 · Gate 2 · Evidence ══ -->
+  <section class="scene scene--tall" id="s06" data-scene data-screen-label="06 Gate 2 Evidence">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <p class="gate-head gate-head--blue"><span class="badge badge--blue">Resolves S2</span><span class="label">Gate 2 · evidence, market &amp; procurement</span></p>
+      <h2 class="h2 h2--gate">Evidence-driven translation &amp; scaling</h2>
+      <p class="gate-lead">Signal in from classrooms, proof out through procurement — so public money buys only what demonstrably works.</p>
+
+      <div class="pillars">
+        <div class="pillar pillar--blue" data-pillar="p4">
+          <div class="pillar__head">
+            <span class="pillar__kicker">Pillar 01</span>
+            <h3>Demand Sourcing</h3>
+            <p class="pillar__sum">7.5 lakh teachers become innovation sensors inside an app the state already ships.</p>
+            <button class="pillar__toggle" type="button" aria-expanded="false" aria-controls="d4">AI Saathi return channel <span class="chev" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="pillar__detail" id="d4">
+            <div class="detail"><span class="detail__term">AI Saathi return channel</span><span class="detail__text">A feedback mechanism inside the notified AI Saathi assistant — no new app, no new rollout.</span></div>
+            <div class="detail"><span class="detail__term">Friction-to-problem mapping</span><span class="detail__text">Classroom challenges captured in real time become a public database of ~15,000 verified problem statements a year, at a conservative 2% response rate.</span></div>
+            <div class="detail"><span class="detail__term">Focused R&amp;D pipeline</span><span class="detail__text">MSInS-registered startups build against verified friction points — immediate classroom utility, a pre-qualified customer base.</span></div>
+          </div>
+        </div>
+
+        <div class="pillar pillar--blue" data-pillar="p5">
+          <div class="pillar__head">
+            <span class="pillar__kicker">Pillar 02</span>
+            <h3>Evaluation Testbed</h3>
+            <p class="pillar__sum">A double-sided quality gate on the ATL network, modelled on the UK's DfE and EEF.</p>
+            <button class="pillar__toggle" type="button" aria-expanded="false" aria-controls="d5">Two-stage efficacy gate <span class="chev" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="pillar__detail" id="d5">
+            <div class="detail"><span class="detail__term">ATL network integration</span><span class="detail__text">The testbed layers onto existing Atal Tinkering Lab schools as real-world testing grounds.</span></div>
+            <div class="detail"><span class="detail__term">Stage 1 · safety &amp; compliance</span><span class="detail__text">Vetted inside MERS for DPDP compliance, algorithmic fairness and baseline technical safety.</span></div>
+            <div class="detail"><span class="detail__term">Stage 2 · pedagogical impact</span><span class="detail__text">A structured pilot measures retention and conceptual mastery against a control group.</span></div>
+            <div class="detail"><span class="detail__term">VSK integration</span><span class="detail__text">Verified efficacy feeds the notified Vidya Samiksha Kendra, gating state procurement on empirical proof of learning outcomes.</span></div>
+          </div>
+        </div>
+
+        <div class="pillar pillar--blue" data-pillar="p6">
+          <div class="pillar__head">
+            <span class="pillar__kicker">Pillar 03</span>
+            <h3>Credential Portability</h3>
+            <p class="pillar__sum">One graduation, recognised everywhere — no repeating the pilot in every district.</p>
+            <button class="pillar__toggle" type="button" aria-expanded="false" aria-controls="d6">APAAR · ABC · EU standard <span class="chev" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="pillar__detail" id="d6">
+            <div class="detail"><span class="detail__term">APAAR / ABC portability</span><span class="detail__text">Testbed graduations link directly to the central APAAR registry and Academic Bank of Credits.</span></div>
+            <div class="detail"><span class="detail__term">EU digital credentials standard</span><span class="detail__text">Tamper-proof micro-credentials issued to graduating startups, styled on the European framework.</span></div>
+            <div class="detail"><span class="detail__term">Frictionless procurement</span><span class="detail__text">The credential becomes a legally recognised quality stamp — a highway past repeat pilot trials in other states and municipalities.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 07 · Ownership ══ -->
+  <section class="scene" id="s07" data-scene data-screen-label="07 Ownership">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <p class="eyebrow eyebrow--green"><span class="rule"></span><span class="label">Ownership</span></p>
+      <h2 class="h2 h2--own">One council,<br>already in statute.</h2>
+      <p class="own-body">The gates need a keeper. Rather than build a new body, reconstitute the <strong>Rajiv Gandhi Science &amp; Technology Commission</strong> — Maharashtra Act XV of 2004 — to own the pipeline end to end.</p>
+      <div class="chain chain--healed">
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Conceived</span></div>
+        <span class="chain__link"></span>
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Researched</span></div>
+        <span class="chain__link chain__link--to-break"></span>
+        <div class="chain__node chain__node--broken"><span class="chain__dot"></span><span class="chain__label">Tested</span></div>
+        <span class="chain__link chain__link--severed"></span>
+        <div class="chain__node chain__node--broken"><span class="chain__dot"></span><span class="chain__label">Funded</span></div>
+        <span class="chain__link chain__link--from-break"></span>
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Adopted</span></div>
+        <span class="chain__link"></span>
+        <div class="chain__node"><span class="chain__dot"></span><span class="chain__label">Scaled</span></div>
+      </div>
+      <div class="chain-bracket">
+        <span class="chain-bracket__rule" aria-hidden="true"></span>
+        <span class="chain-bracket__label"><strong>Rajiv Gandhi Science &amp; Technology Commission</strong> · owner of all six stages</span>
+      </div>
+      <p class="meta">One keeper, six stages, no new statute — and the chain closes.</p>
+    </div>
+  </section>
+
+  <!-- ══ 08 · The core ask ══ -->
+  <section class="scene" id="s08" data-scene data-screen-label="08 Core ask">
+    <div class="scene-inner" data-scene-inner>
+      <div class="glow" aria-hidden="true"></div>
+      <p class="eyebrow eyebrow--gold"><span class="rule"></span><span class="label">The ask</span></p>
+      <h2 class="h2 h2--ask">Two moves.<br><span class="gold">No new budget line.</span></h2>
+      <div class="moves">
+        <div class="move">
+          <span class="move__kicker">Move one</span>
+          <span class="move__title">A state notification under Rule 10</span>
+          <span class="move__note">Opens the sandbox. Executive action, no legislation.</span>
+        </div>
+        <div class="move">
+          <span class="move__kicker">Move two</span>
+          <span class="move__title">A module inside a course the state already runs</span>
+          <span class="move__note">Opens the signal channel through AI Saathi.</span>
+        </div>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><span class="stat__num stat__num--gold">₹524 cr</span><span class="stat__cap">approved, recurring, unclaimed</span></div>
+        <div class="stat"><span class="stat__num">36 districts</span><span class="stat__cap">compute, testbeds and teachers already there</span></div>
+        <div class="stat"><span class="stat__num stat__num--green">S1 + S2</span><span class="stat__cap">need only executive action</span></div>
+      </div>
+      <p class="closer">Redirection, not new money.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── scroll-zoom engine ─────────────────────────────────────────
+     One listener for every scene. Each sticky inner is flown in over
+     the first OV pixels of its pinned run, held at full size for the
+     middle, then flown through over the last OV pixels. OV is measured
+     in pixels rather than as a fraction of the scene, so 200vh and
+     240vh scenes hand over identically — and it equals the 30vh the
+     sections overlap by, so the outgoing scene's fly-out and the
+     incoming one's fly-in are the same stretch of scroll: the next
+     slide is already sharpening while this one is still receding. */
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('[data-scene]'));
+  var reduceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  var OV = 0.30;            // overlap, in viewport heights — matches the CSS
+  var pending = false;
+
+  function update() {
+    var reduce = reduceQuery ? reduceQuery.matches : false;
+    var vh = window.innerHeight;
+    var last = scenes.length - 1;
+
+    for (var i = 0; i < scenes.length; i++) {
+      var inner = scenes[i].querySelector('[data-scene-inner]');
+      if (!inner) continue;
+
+      if (reduce) {
+        inner.style.transform = '';
+        inner.style.opacity = '';
+        inner.style.filter = '';
+        inner.style.pointerEvents = '';
+        continue;
+      }
+
+      var r = scenes[i].getBoundingClientRect();
+      var span = Math.max(1, r.height - vh);       // length of the pinned run
+      var ov = Math.min(vh * OV, span / 2);        // fly-in / fly-out distance
+      var p = Math.min(span, Math.max(0, -r.top)); // pixels into the pinned run
+      var scale = 1, op = 1, blur = 0, k, e;
+
+      if (p < ov && i > 0) {                       // entering — zoom in
+        k = p / ov;
+        e = 1 - Math.pow(1 - k, 3);                // ease-out-cubic
+        scale = 1 - (1 - e) * 0.18;                // 0.82 → 1
+        op = Math.min(1, e * 1.35);                // legible a third of the way in
+        blur = (1 - e) * 4;
+      } else if (p > span - ov && i < last) {      // exiting — zoom through
+        k = (p - (span - ov)) / ov;
+        e = Math.pow(k, 1.6);                      // ease-in
+        scale = 1 + e * 0.28;                      // 1 → 1.28
+        op = Math.max(0, 1 - e * 1.45);            // gone before the fly-in ends
+        blur = e * 6;
+      }
+
+      inner.style.transform = 'scale(' + scale.toFixed(4) + ')';
+      inner.style.opacity = op.toFixed(3);
+      inner.style.filter = blur > 0.05 ? 'blur(' + blur.toFixed(2) + 'px)' : 'none';
+      inner.style.pointerEvents = op > 0.7 ? 'auto' : 'none';
+    }
+    }
+
+  function onScroll() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function () { pending = false; update(); });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  if (reduceQuery) {
+    var onPref = function () { update(); };
+    if (reduceQuery.addEventListener) reduceQuery.addEventListener('change', onPref);
+    else if (reduceQuery.addListener) reduceQuery.addListener(onPref);
+  }
+  update();
+
+  /* ── pillar expand / collapse ───────────────────────────────────
+     Collapsed only once JS is running, so a JS-less page still reads
+     every detail in document order. Each pillar toggles alone.      */
+  var pillars = Array.prototype.slice.call(document.querySelectorAll('[data-pillar]'));
+  var expandAll = /(^|[?&])expand=1(&|$)/.test(window.location.search);
+
+  function setOpen(pillar, open) {
+    pillar.classList.toggle('is-open', open);
+    // the ↓ glyph itself rotates to ↑ in CSS, so only the state changes here
+    var btn = pillar.querySelector('.pillar__toggle');
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  pillars.forEach(function (pillar) {
+    var btn = pillar.querySelector('.pillar__toggle');
+    setOpen(pillar, expandAll);
+    if (!btn) return;
+    btn.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      setOpen(pillar, !pillar.classList.contains('is-open'));
+    });
+    // the whole card is a target too; the button stays the keyboard control
+    pillar.addEventListener('click', function () {
+      setOpen(pillar, !pillar.classList.contains('is-open'));
+    });
+  });
+})();
+</script>
+</body>
+</html>

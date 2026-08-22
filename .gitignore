@@ -1,0 +1,9 @@
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+
+# Local working material, not part of the deliverable
+Claude Code Ask.pdf
+Redirection Pitch - Standalone.html
