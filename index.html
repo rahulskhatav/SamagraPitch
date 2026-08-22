@@ -54,14 +54,18 @@ a:hover{color:var(--gold-deep)}
 .page{min-width:1180px;background:var(--bg)}
 
 /* ── scene shell ─────────────────────────────────────────────── */
-.scene{position:relative;height:200vh}
+/* The section boxes are spacers only. Since scenes overlap, an upcoming
+   section reaches over the live slide, so it must not take hits — the
+   pinned inner is the only thing that does (the engine drops that back
+   to none while a scene is faded). */
+.scene{position:relative;height:200vh;pointer-events:none}
 .scene--tall{height:240vh}
 /* Scenes overlap by 30vh (= 130vh − 100vh): the next scene is already
    pinned and fading in while this one flies out, so no blank scroll sits
    between them. Later sections paint above earlier ones by DOM order. */
 .scene + .scene{margin-top:-130vh}
 .scene-inner{
-  position:sticky;top:0;height:100vh;
+  position:sticky;top:0;height:100vh;pointer-events:auto;
   display:flex;flex-direction:column;justify-content:center;
   padding:0 6vw 0 9vw;overflow:hidden;
   will-change:transform,opacity;
@@ -221,7 +225,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.025em}
 .gate-lead{font-size:19px;font-weight:300;line-height:1.55;color:rgba(255,238,219,.66);margin:12px 0 44px;max-width:64ch}
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1360px}
 .pillar{
-  display:flex;flex-direction:column;border-radius:8px;
+  display:flex;flex-direction:column;border-radius:8px;cursor:pointer;
   border:1px solid rgba(255,238,219,.15);
   transition:background .2s ease,border-color .2s ease;
 }
@@ -680,7 +684,9 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.025em}
 
   /* ── pillar expand / collapse ───────────────────────────────────
      Collapsed only once JS is running, so a JS-less page still reads
-     every detail in document order. Each pillar toggles alone.      */
+     every detail in document order. The three pillars of a gate open
+     and close as one row: opening any of them opens its neighbours,
+     so the slide reads as a whole rather than one card at a time.   */
   var pillars = Array.prototype.slice.call(document.querySelectorAll('[data-pillar]'));
   var expandAll = /(^|[?&])expand=1(&|$)/.test(window.location.search);
 
@@ -691,17 +697,23 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.025em}
     if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
+  function setRow(pillar, open) {
+    var row = pillar.parentNode;                 // the .pillars grid
+    var siblings = row.querySelectorAll('[data-pillar]');
+    for (var i = 0; i < siblings.length; i++) setOpen(siblings[i], open);
+  }
+
   pillars.forEach(function (pillar) {
     var btn = pillar.querySelector('.pillar__toggle');
     setOpen(pillar, expandAll);
     if (!btn) return;
     btn.addEventListener('click', function (ev) {
       ev.stopPropagation();
-      setOpen(pillar, !pillar.classList.contains('is-open'));
+      setRow(pillar, !pillar.classList.contains('is-open'));
     });
     // the whole card is a target too; the button stays the keyboard control
     pillar.addEventListener('click', function () {
-      setOpen(pillar, !pillar.classList.contains('is-open'));
+      setRow(pillar, !pillar.classList.contains('is-open'));
     });
   });
 })();

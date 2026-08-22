@@ -231,7 +231,7 @@ Summary: `One graduation, recognised everywhere — no repeating the pilot in ev
 
 ## 5. Component patterns
 
-**Expandable pillar detail.** Each pillar's detail list is collapsed by default behind the toggle label (`Three phases ↓` etc.). Clicking the label expands that pillar only. Implement with a single state object keyed `p1`–`p6`; toggling one must not close others. Rotate the `↓` to `↑` when open. Animate with a `max-height` + `opacity` transition, ~240ms ease.
+**Expandable pillar detail.** Each pillar's detail list is collapsed by default behind the toggle label (`Three phases ↓` etc.). **A gate's three pillars open and close as one row:** clicking any of them — the toggle label or anywhere on the card — expands all three, and clicking again collapses all three, so the slide reads as a whole rather than one card at a time. The two gates stay independent: opening scene 05 leaves scene 06 untouched. Implement with a single state object keyed `p1`–`p6`, setting a row at a time. Rotate the `↓` to `↑` when open. Animate with a `max-height` + `opacity` transition, ~240ms ease.
 
 Provide a URL flag `?expand=1` that opens all pillars at once — needed for screenshots and PDF export of the submission.
 
