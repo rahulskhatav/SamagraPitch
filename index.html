@@ -227,6 +227,18 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.025em}
 .gap-row--top .gap-why{font-size:14.5px;color:rgba(255,238,219,.74)}
 .gap-row--top .gap-meter i{background:var(--red-soft)}
 .gap-row--top .gap-num{font-size:19px;font-weight:500;color:var(--red-soft)}
+/* in scope, one step below the two that carry the break */
+.gap-row--scope{
+  padding:18px 24px;
+  background-color:var(--panel);
+  background-image:linear-gradient(90deg,rgba(217,160,31,.16),rgba(217,160,31,.045));
+  box-shadow:inset 3px 0 0 var(--gold);
+}
+.gap-row--scope .gap-id{font-size:19px;color:var(--gold-soft)}
+.gap-row--scope .gap-name{font-size:16px;color:rgba(255,238,219,.92)}
+.gap-row--scope .gap-why{font-size:14px;color:rgba(255,238,219,.62)}
+.gap-row--scope .gap-meter i{background:var(--gold)}
+.gap-row--scope .gap-num{font-size:18px;font-weight:500;color:var(--gold-soft)}
 .callout{
   margin-top:24px;max-width:98ch;padding:22px 26px;border-radius:8px;
   border:1px solid var(--hair);border-left:3px solid var(--red);
@@ -465,7 +477,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.025em}
           <span class="gap-score"><span class="gap-meter"><i style="width:47%"></i></span><span class="gap-num">10.0</span></span>
         </div>
 
-        <div class="gap-row gap-row--dim">
+        <div class="gap-row gap-row--scope">
           <span class="gap-id">S5</span>
           <span class="gap-name">Four departments own one stage each; nobody owns the pipeline</span>
           <span class="gap-why">The reason the other four stay open. A failure spanning two departments is visible to somebody, actionable by nobody.</span>

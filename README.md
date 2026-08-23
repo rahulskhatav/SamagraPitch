@@ -160,7 +160,7 @@ The fifth cell is the punchline — give it a `rgba(217,160,31,.16)` tinted back
 | S4 | Nothing crosses from a working idea to a paying customer | No demand channel to buyers, no IP/licensing framework, no capital bridging validation. The narrowest reach of the five. | 10.0 |
 | S5 | Four departments own one stage each; nobody owns the pipeline | The reason the other four stay open. A failure spanning two departments is visible to somebody, actionable by nobody. | 16.3 |
 
-- **Visually elevate S1 and S2**: tinted row background, red left border, score in `--red-soft` at larger size. S3–S5 render dimmer so the eye lands on the top two — dim them with `filter: brightness(.78)`, not `opacity`, which would make the rows translucent and let the background map show through the text.
+- **Three levels of emphasis.** S1 and S2 carry the break: tinted row background, red left border, score in `--red-soft` at larger size. **S5 is in scope too**, answered by the ownership model in scene 07, so it takes the same treatment in gold; a `rgba(217,160,31,.16)` tint, a `--gold` left border and the score in `--gold-soft`, pitched one step below the red pair. S3 and S4 recede. Dim those two with `filter: brightness(.78)`, not `opacity`, which would make the rows translucent and let the background map show through the text.
 - Closing callout block: heading `S1 and S2 fail together.` then `They are the permission and the machinery. Permission without machinery is exactly what South Korea had; machinery without permission is illegal.`
 
 ### Scene 05 — Gate 1: MERS (height 240vh)
