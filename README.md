@@ -56,6 +56,8 @@ Max text measure: `46ch` for lead, `56ch` for body. Never full-bleed paragraphs.
 
 **Layout:** each scene's inner container uses `padding: 0 6vw 0 9vw` — deliberately asymmetric, content hangs left.
 
+**Background map.** One fixed layer behind every scene holds an outline of Maharashtra with its district borders as faint political-map texture — the border dissolved out of the 35 district polygons of the 2011 census boundary set, projected and simplified to ~22 KB of inline SVG path. Anchored right at `86vh` tall so the whole state reads in frame; outline `rgba(255,238,219,.2)`, district lines `.07`. It never scrolls: the deck flies over one unchanging ground. Every panel that sits over it (`--panel` cards, tinted table rows, the callout, pillar cards, move cards) must carry an opaque `background-color` under its tint, or the map shows through the text.
+
 **Eyebrow pattern:** a 56px gradient hairline (`transparent → --gold-soft`) followed by uppercase label, gap 14px. Use at the top of most scenes; vary the label colour per scene (gold, green, blue, violet) to give each slide its own key.
 
 ---
@@ -101,28 +103,34 @@ The result: the viewer flies *into* each slide, holds, then flies *through* it i
 
 Use this copy **verbatim**. The figures are sourced and must not be paraphrased, rounded, or invented.
 
+Scenes 01–04 must stand on their own for someone reading without the spoken pitch: name Maharashtra, the government and the education sector explicitly, and say what the diagram or table is before showing it. Context prose may be added, but no figure, source or gap may be.
+
 ### Scene 01 — Apex
 
-- Eyebrow: `Maharashtra · deep tech in education` (gold)
+- Eyebrow: `Government of Maharashtra · school & higher education` (gold)
 - H1: `Redirection,` / line break / `not new money.` — second line in `--gold`
-- Lead: `A regulated sandbox for testing. A signal channel for feedback. Procurement that pays only for proof.`
+- Lead: `Maharashtra wants deep technology — extended reality, adaptive learning, AI tutors — working in its classrooms. The students, the teachers, the compute and the money are already there. What is missing is the wiring between them.`
+- Sub-lead (19px, caption tint): `This proposal is that wiring: a regulated sandbox for testing, a signal channel for feedback, and procurement that pays only for proof.`
+- Credit line in meta style: `The Governance Challenge 2026 · Education · Government of Maharashtra`
 - Footer cue: `SCROLL` in meta style with a trailing gradient hairline.
 - Glow: gold at 88% 26%, violet at 8% 86%.
 
 ### Scene 02 — The broken chain
 
-- Eyebrow: `Six stages of deep tech development` (green)
+- Eyebrow: `From an idea to a Maharashtra classroom · six stages` (green)
 - H2: `The chain holds at both ends. It snaps in the middle.`
+- Context paragraph above the diagram: `Every education technology that reaches a government classroom travels the same six stages: conceived in a university lab or a startup, researched, tested with real students, funded, adopted by the school system, then scaled across the state. Maharashtra performs at both ends of that chain.`
 - **Chain diagram**, horizontal, single row, `flex-wrap: nowrap`:
   `Conceived → Researched → Tested → Funded → Adopted → Scaled`
   - Working nodes (Conceived, Researched, Adopted, Scaled): 16px circle, 2px `--green` border, `rgba(52,168,83,.28)` fill, label in `--green-txt`.
   - Broken nodes (**Tested**, **Funded**): 22px circle, 2px `--red-soft` border, solid `--red` fill, `box-shadow: 0 0 0 8px rgba(224,52,44,.2)` halo, label in `--red-soft` weight 500.
   - Connectors are `flex:1` 3px bars: solid green between working pairs; green→red and red→green gradients on either side of the break; and **between Tested and Funded use a dashed stroke** — `repeating-linear-gradient(90deg, #e0342c 0 5px, transparent 5px 13px)` — to read as severed.
-- Body: `An idea can be conceived and researched here, and it can scale here — but nothing crosses from a working prototype to a funded, procured product. Two links carry the whole failure.`
+- Body: `An idea can be conceived and researched here, and it can scale here — but nothing crosses from a working prototype to a funded, procured product. A startup has no lawful way to run a pilot with school students, and the state has no evidence on which to buy. Two links carry the whole failure.`
 
 ### Scene 03 — What the state already owns
 
-- Eyebrow: `What the state already owns` (blue)
+- Eyebrow: `What the Government of Maharashtra already owns` (blue)
+- Context paragraph above the grid: `None of this has to be built. The state already runs the classrooms, the teacher training, the compute and the labs — and the money for the work is approved, recurring and sitting unclaimed.`
 - Five-column grid, 1px gaps over a `rgba(255,238,219,.13)` background so the gaps read as hairline rules. Each cell: a 3px coloured top bar, then stat + caption.
 
 | Stat | Caption | Top bar |
@@ -141,6 +149,7 @@ The fifth cell is the punchline — give it a `rgba(217,160,31,.16)` tinted back
 
 - Eyebrow: `Five systemic gaps, scored` (red)
 - Sub-line: `Impact (blocking power · lifecycle coverage · reach) × feasibility (legal · fiscal · institutional readiness · time to proof)`
+- Context line above the table: `Auditing that pipeline stage by stage turns up five gaps between an idea and a Maharashtra classroom. Two of them account for the break.`
 - Table, columns: `# | Gap | Why it matters | Score`. Rows in descending score order. Header row in caption style, uppercase, dim.
 
 | # | Gap | Why it matters | Score |
@@ -151,7 +160,7 @@ The fifth cell is the punchline — give it a `rgba(217,160,31,.16)` tinted back
 | S3 | Research is neither pointed at education nor spread beyond a few institutions | No education vertical in any funding instrument; ~2.5% of colleges run PhDs. Slows what gets built; blocks nothing in flight. | 10.8 |
 | S4 | Nothing crosses from a working idea to a paying customer | No demand channel to buyers, no IP/licensing framework, no capital bridging validation. The narrowest reach of the five. | 10.0 |
 
-- **Visually elevate S1 and S2**: tinted row background, red left border, score in `--red-soft` at larger size. S3–S5 render dimmer (`opacity: .68`) so the eye lands on the top two.
+- **Visually elevate S1 and S2**: tinted row background, red left border, score in `--red-soft` at larger size. S3–S5 render dimmer so the eye lands on the top two — dim them with `filter: brightness(.78)`, not `opacity`, which would make the rows translucent and let the background map show through the text.
 - Closing callout block: heading `S1 and S2 fail together.` then `They are the permission and the machinery. Permission without machinery is exactly what South Korea had; machinery without permission is illegal.`
 
 ### Scene 05 — Gate 1: MERS (height 240vh)
@@ -276,6 +285,8 @@ Provide a URL flag `?expand=1` that opens all pillars at once — needed for scr
 - [ ] All three pillars in scenes 05 and 06 sit horizontally with details underneath.
 - [ ] `?expand=1` opens every pillar.
 - [ ] Every figure matches §4 exactly — `1.45 cr`, `7.5 lakh`, `₹10,000 cr`, `₹524 cr`, `15,000`, `2%`, `21.3 / 21.0 / 16.3 / 10.8 / 10.0`, `Act XV of 2004`, `36 districts`.
+- [ ] The Maharashtra outline reads as the state at a glance and never shows through a panel or a table row.
+- [ ] Scenes 01–04 explain themselves to a reader with no audio: who, where, what sector, what the diagram means.
 - [ ] No console errors; opens correctly from `file://`.
 - [ ] With JS off, all content is still readable in document order.
 - [ ] `prefers-reduced-motion` disables all transforms and blur.
@@ -285,7 +296,7 @@ Provide a URL flag `?expand=1` that opens all pillars at once — needed for scr
 ## 9. Do not
 
 - Do not add a nav bar, logo, footer, contact form, cookie banner, or CTA button. This is a pitch, not a website.
-- Do not add stock imagery, illustrations, or icon sets. The visual language is type, colour, hairlines and the chain diagram.
+- Do not add stock imagery, illustrations, or icon sets. The visual language is type, colour, hairlines, the chain diagram and the Maharashtra outline behind them — all of it drawn from data or type, none of it decoration bought in.
 - Do not invent statistics, sources, citations, or additional gaps.
 - Do not soften the copy or make it more "marketing". The register is a government policy note.
 - Do not make it responsive down to mobile at the cost of the desktop composition.
