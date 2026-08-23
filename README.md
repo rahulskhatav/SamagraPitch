@@ -109,7 +109,7 @@ Scenes 01–04 must stand on their own for someone reading without the spoken pi
 
 - Eyebrow: `Government of Maharashtra · school & higher education` (gold)
 - H1: `Redirection,` / line break / `not new money.` — second line in `--gold`
-- Lead: `Maharashtra wants deep technology — extended reality, adaptive learning, AI tutors — working in its classrooms. The students, the teachers, the compute and the money are already there. What is missing is the wiring between them.`
+- Lead: `Maharashtra wants deep technology working in its classrooms, from extended reality to adaptive learning and AI tutors. The students, the teachers, the compute and the money are already there. What is missing is the wiring between them.`
 - Sub-lead (19px, caption tint): `This proposal is that wiring: a regulated sandbox for testing, a signal channel for feedback, and procurement that pays only for proof.`
 - Credit line in meta style: `The Governance Challenge 2026 · Education · Government of Maharashtra`
 - Footer cue: `SCROLL` in meta style with a trailing gradient hairline.
@@ -125,12 +125,12 @@ Scenes 01–04 must stand on their own for someone reading without the spoken pi
   - Working nodes (Conceived, Researched, Adopted, Scaled): 16px circle, 2px `--green` border, `rgba(52,168,83,.28)` fill, label in `--green-txt`.
   - Broken nodes (**Tested**, **Funded**): 22px circle, 2px `--red-soft` border, solid `--red` fill, `box-shadow: 0 0 0 8px rgba(224,52,44,.2)` halo, label in `--red-soft` weight 500.
   - Connectors are `flex:1` 3px bars: solid green between working pairs; green→red and red→green gradients on either side of the break; and **between Tested and Funded use a dashed stroke** — `repeating-linear-gradient(90deg, #e0342c 0 5px, transparent 5px 13px)` — to read as severed.
-- Body: `An idea can be conceived and researched here, and it can scale here — but nothing crosses from a working prototype to a funded, procured product. A startup has no lawful way to run a pilot with school students, and the state has no evidence on which to buy. Two links carry the whole failure.`
+- Body: `An idea can be conceived and researched here, and it can scale here, but nothing crosses from a working prototype to a funded, procured product. A startup has no lawful way to run a pilot with school students, and the state has no evidence on which to buy. Two links carry the whole failure.`
 
 ### Scene 03 — What the state already owns
 
 - Eyebrow: `What the Government of Maharashtra already owns` (blue)
-- Context paragraph above the grid: `None of this has to be built. The state already runs the classrooms, the teacher training, the compute and the labs — and the money for the work is approved, recurring and sitting unclaimed.`
+- Context paragraph above the grid: `None of this has to be built. The state already runs the classrooms, the teacher training, the compute and the labs; the money for the work is approved, recurring and sitting unclaimed.`
 - Five-column grid, 1px gaps over a `rgba(255,238,219,.13)` background so the gaps read as hairline rules. Each cell: a 3px coloured top bar, then stat + caption.
 
 | Stat | Caption | Top bar |
@@ -138,7 +138,7 @@ Scenes 01–04 must stand on their own for someone reading without the spoken pi
 | `1.45 cr` | school students · 87 universities · 5,579 colleges | blue |
 | `7.5 lakh` | teachers already inside AI Saathi training | violet |
 | `₹10,000 cr` | AI Policy 2026 · 2,000 GPUs · 6 Centres of Excellence | pink |
-| `ATL` | Atal Tinkering Lab network — a physical testbed in place | green |
+| `ATL` | Atal Tinkering Lab network, a physical testbed in place | green |
 | `₹524 cr` | a year · recurring · cabinet-approved · currently unclaimed (PRS 2026-27) | gold |
 
 The fifth cell is the punchline — give it a `rgba(217,160,31,.16)` tinted background instead of `--panel`.
@@ -155,7 +155,7 @@ The fifth cell is the punchline — give it a `rgba(217,160,31,.16)` tinted back
 | # | Gap | Why it matters | Score |
 |---|---|---|---|
 | S1 | No lawful route to process minors' learning data | Adaptive learning is behavioural monitoring under DPDP. Every AI pilot is non-compliant until the state builds a pathway. Gates all others. | 21.3 |
-| S2 | The state runs blind — no signal in, nothing measured, nothing verifiable | No teacher feedback loop, no evaluation on testbeds, no credential portability. Nothing can be validated, so nothing can be procured on evidence. | 21.0 |
+| S2 | The state runs blind; no signal in, nothing measured, nothing verifiable | No teacher feedback loop, no evaluation on testbeds, no credential portability. Nothing can be validated, so nothing can be procured on evidence. | 21.0 |
 | S5 | Four departments own one stage each; nobody owns the pipeline | The reason the other four stay open. A failure spanning two departments is visible to somebody, actionable by nobody. | 16.3 |
 | S3 | Research is neither pointed at education nor spread beyond a few institutions | No education vertical in any funding instrument; ~2.5% of colleges run PhDs. Slows what gets built; blocks nothing in flight. | 10.8 |
 | S4 | Nothing crosses from a working idea to a paying customer | No demand channel to buyers, no IP/licensing framework, no capital bridging validation. The narrowest reach of the five. | 10.0 |
@@ -167,7 +167,7 @@ The fifth cell is the punchline — give it a `rgba(217,160,31,.16)` tinted back
 
 - Eyebrow row: `Resolves S1` (as a small red pill/badge) + `Gate 1 · the legal gate`
 - H2: `Maharashtra EdTech Regulatory Sandbox`
-- Lead: `A lawful pathway to process minors' learning data — co-managed by SCERT, the School Education Department and MSInS.`
+- Lead: `A lawful pathway to process minors' learning data; co-managed by SCERT, the School Education Department and MSInS.`
 - **Three pillars side by side** (equal-width columns, 1px hairline dividers between). Each pillar: `PILLAR 0N` eyebrow → H3 → one-line summary → an expand affordance → detail items beneath.
 
 **Pillar 01 — Selection Mechanism**
@@ -186,21 +186,21 @@ Summary: `What a startup must run continuously while inside the sandbox.` · Tog
 Summary: `Consent that is provable, and telemetry that carries no identity.` · Toggle label: `Two ledgers ↓`
 - *Immutable cryptographic consent* — A private, permissioned state ledger. Every grant, change or withdrawal made through Aaple Sarkar is cryptographically logged.
   - *Granular opt-in · s.6(3)* — Per-activity toggles in Marathi and English.
-  - *Mitigating s.6(5)* — Withdraw consent and the student reverts to the standard digital version — no loss of basic pedagogical access.
+  - *Mitigating s.6(5)* — Withdraw consent and the student reverts to the standard digital version, with no loss of basic pedagogical access.
 - *Pseudonymized telemetry ledger* — VR gaze tracking, haptic latency and adaptive progression are stripped of identity, hashed, and processed as pseudonymized transactions.
 
 ### Scene 06 — Gate 2: Evidence (height 240vh)
 
 - Eyebrow row: `Resolves S2` badge + `Gate 2 · evidence, market & procurement`
 - H2: `Evidence-driven translation & scaling`
-- Lead: `Signal in from classrooms, proof out through procurement — so public money buys only what demonstrably works.`
+- Lead: `Signal in from classrooms, proof out through procurement, so public money buys only what demonstrably works.`
 - Same three-pillar layout as scene 05.
 
 **Pillar 01 — Demand Sourcing**
 Summary: `7.5 lakh teachers become innovation sensors inside an app the state already ships.` · Toggle: `AI Saathi return channel ↓`
-- *AI Saathi return channel* — A feedback mechanism inside the notified AI Saathi assistant — no new app, no new rollout.
+- *AI Saathi return channel* — A feedback mechanism inside the notified AI Saathi assistant; no new app, no new rollout.
 - *Friction-to-problem mapping* — Classroom challenges captured in real time become a public database of ~15,000 verified problem statements a year, at a conservative 2% response rate.
-- *Focused R&D pipeline* — MSInS-registered startups build against verified friction points — immediate classroom utility, a pre-qualified customer base.
+- *Focused R&D pipeline* — MSInS-registered startups build against verified friction points; immediate classroom utility, a pre-qualified customer base.
 
 **Pillar 02 — Evaluation Testbed**
 Summary: `A double-sided quality gate on the ATL network, modelled on the UK's DfE and EEF.` · Toggle: `Two-stage efficacy gate ↓`
@@ -210,18 +210,18 @@ Summary: `A double-sided quality gate on the ATL network, modelled on the UK's D
 - *VSK integration* — Verified efficacy feeds the notified Vidya Samiksha Kendra, gating state procurement on empirical proof of learning outcomes.
 
 **Pillar 03 — Credential Portability**
-Summary: `One graduation, recognised everywhere — no repeating the pilot in every district.` · Toggle: `APAAR · ABC · EU standard ↓`
+Summary: `One graduation, recognised everywhere; no repeating the pilot in every district.` · Toggle: `APAAR · ABC · EU standard ↓`
 - *APAAR / ABC portability* — Testbed graduations link directly to the central APAAR registry and Academic Bank of Credits.
 - *EU digital credentials standard* — Tamper-proof micro-credentials issued to graduating startups, styled on the European framework.
-- *Frictionless procurement* — The credential becomes a legally recognised quality stamp — a highway past repeat pilot trials in other states and municipalities.
+- *Frictionless procurement* — The credential becomes a legally recognised quality stamp, a highway past repeat pilot trials in other states and municipalities.
 
 ### Scene 07 — Ownership
 
 - Eyebrow: `Ownership`
 - H2: `One council,` / line break / `already in statute.`
-- Body: `The gates need a keeper. Rather than build a new body, reconstitute the ` **Rajiv Gandhi Science & Technology Commission** ` — Maharashtra Act XV of 2004 — to own the pipeline end to end.` (bold the commission name in `--gold`)
+- Body: `The gates need a keeper. Rather than build a new body, reconstitute the ` **Rajiv Gandhi Science & Technology Commission** `, Maharashtra Act XV of 2004, to own the pipeline end to end.` (bold the commission name in `--gold`)
 - **Re-render the six-stage chain from scene 02, now fully healed** — all six nodes green, all connectors solid green, and a bracket or spanning rule beneath all six labelled with the commission. This visual payoff is the point of the scene.
-- Closing line: `One keeper, six stages, no new statute — and the chain closes.`
+- Closing line: `One keeper, six stages, no new statute, and the chain closes.`
 
 ### Scene 08 — The core ask
 
