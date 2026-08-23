@@ -150,15 +150,15 @@ The fifth cell is the punchline — give it a `rgba(217,160,31,.16)` tinted back
 - Eyebrow: `Five systemic gaps, scored` (red)
 - Sub-line: `Impact (blocking power · lifecycle coverage · reach) × feasibility (legal · fiscal · institutional readiness · time to proof)`
 - Context line above the table: `Auditing that pipeline stage by stage turns up five gaps between an idea and a Maharashtra classroom. Two of them account for the break.`
-- Table, columns: `# | Gap | Why it matters | Score`. Rows in descending score order. Header row in caption style, uppercase, dim.
+- Table, columns: `# | Gap | Why it matters | Score`. Rows in gap-number order, S1 to S5, not by score; the meter beside each score carries the magnitude. Header row in caption style, uppercase, dim.
 
 | # | Gap | Why it matters | Score |
 |---|---|---|---|
 | S1 | No lawful route to process minors' learning data | Adaptive learning is behavioural monitoring under DPDP. Every AI pilot is non-compliant until the state builds a pathway. Gates all others. | 21.3 |
 | S2 | The state runs blind; no signal in, nothing measured, nothing verifiable | No teacher feedback loop, no evaluation on testbeds, no credential portability. Nothing can be validated, so nothing can be procured on evidence. | 21.0 |
-| S5 | Four departments own one stage each; nobody owns the pipeline | The reason the other four stay open. A failure spanning two departments is visible to somebody, actionable by nobody. | 16.3 |
 | S3 | Research is neither pointed at education nor spread beyond a few institutions | No education vertical in any funding instrument; ~2.5% of colleges run PhDs. Slows what gets built; blocks nothing in flight. | 10.8 |
 | S4 | Nothing crosses from a working idea to a paying customer | No demand channel to buyers, no IP/licensing framework, no capital bridging validation. The narrowest reach of the five. | 10.0 |
+| S5 | Four departments own one stage each; nobody owns the pipeline | The reason the other four stay open. A failure spanning two departments is visible to somebody, actionable by nobody. | 16.3 |
 
 - **Visually elevate S1 and S2**: tinted row background, red left border, score in `--red-soft` at larger size. S3–S5 render dimmer so the eye lands on the top two — dim them with `filter: brightness(.78)`, not `opacity`, which would make the rows translucent and let the background map show through the text.
 - Closing callout block: heading `S1 and S2 fail together.` then `They are the permission and the machinery. Permission without machinery is exactly what South Korea had; machinery without permission is illegal.`
